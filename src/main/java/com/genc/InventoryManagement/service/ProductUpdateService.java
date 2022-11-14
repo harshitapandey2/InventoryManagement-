@@ -6,18 +6,18 @@ import org.springframework.stereotype.Service;
 import com.genc.InventoryManagement.exception.ProductNotFoundException;
 import com.genc.InventoryManagement.model.ProductEntity;
 import com.genc.InventoryManagement.model.ProductResponse;
+import com.genc.InventoryManagement.model.ProductUpdateRequest;
 import com.genc.InventoryManagement.repository.ProductRepository;
 
 @Service
 public class ProductUpdateService {
 	@Autowired
 	ProductRepository prodRepo;
-	public ProductResponse updateProduct(ProductEntity prodEntity) {
-        ProductEntity prodData = prodRepo.findById(prodEntity.getProductId()).orElseThrow(()-> new ProductNotFoundException("Product not found to update"));
-        prodData.setProductId(prodEntity.getProductId());
-        prodData.setProductName(prodEntity.getProductName());
-        prodData.setShortDescription(prodEntity.getShortDescription());
-        prodData.setDetailedDescription(prodEntity.getDetailedDescription());
+	public ProductResponse updateProduct(ProductUpdateRequest prodRequest) {
+        ProductEntity prodData = prodRepo.findByProductName(prodRequest.getProductName()).orElseThrow(()-> new ProductNotFoundException("Product not found to update"));
+        prodData.setProductName(prodRequest.getProductName());
+        prodData.setShortDescription(prodRequest.getShortDescription());
+        prodData.setDetailedDescription(prodRequest.getDetailedDescription());
         
         prodRepo.save(prodData);
         return new ProductResponse("Product successfully updated", prodData);
