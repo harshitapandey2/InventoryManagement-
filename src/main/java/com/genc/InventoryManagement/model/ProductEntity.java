@@ -7,14 +7,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Builder;
+
 @Entity
 @Table(name="product")
+@Builder
 public class ProductEntity {
 	@Column(name="Prod_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int productId;
-	@Column(name="Prod_name",nullable =false,unique=true)
+	@Column(name="Prod_name",nullable =false)
 	private String productName;
 	@Column(name="Short_desc",nullable=false)
 	private String shortDescription;
@@ -29,7 +32,7 @@ public class ProductEntity {
 		
 		
 	}
-	public ProductEntity(String productName, String shortDescription, String detailedDescription,
+	public ProductEntity(int productId, String productName, String shortDescription, String detailedDescription,
 			String category, Double price) {
 		this.productName = productName;
 		this.shortDescription = shortDescription;

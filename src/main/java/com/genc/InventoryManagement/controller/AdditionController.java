@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.genc.InventoryManagement.model.ProductRequest;
@@ -19,9 +19,8 @@ public class AdditionController {
 	
 	@Autowired
 	ProductAdditionService prodService;
-	@PostMapping("/p-addition")
-	public ResponseEntity<ProductResponse> addController(@ModelAttribute ProductRequest prodReq) {
-		
+	@PostMapping(value="/p-addition")
+	public ResponseEntity<ProductResponse> addController(@RequestBody ProductRequest prodReq) {
 		System.out.println(prodReq.getProductName());
 		return new ResponseEntity<ProductResponse>(prodService.addProduct(prodReq), HttpStatus.OK);
 		

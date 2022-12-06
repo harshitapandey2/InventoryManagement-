@@ -18,7 +18,7 @@ public class ProductUpdateService {
         prodData.setProductName(prodRequest.getProductName());
         prodData.setShortDescription(prodRequest.getShortDescription());
         prodData.setDetailedDescription(prodRequest.getDetailedDescription());
-        
+        prodData.setPrice(prodRequest.getPrice());
         prodRepo.save(prodData);
         return new ProductResponse("Product successfully updated", prodData);
     }

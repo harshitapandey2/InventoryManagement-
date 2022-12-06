@@ -1,11 +1,16 @@
 package com.genc.InventoryManagement.model;
 
+import lombok.Builder;
+
+@Builder
 public class ProductRequest {
 	private String productName;
 	private String shortDescription;
 	private String detailedDescription;
 	private String category;
 	private Double price;
+	
+	
 	public String getProductName() {
 		return productName;
 	}
@@ -51,4 +56,3 @@ public class ProductRequest {
 	}
 
 }
-
